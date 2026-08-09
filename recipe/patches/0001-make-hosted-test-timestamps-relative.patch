@@ -1,0 +1,27 @@
+--- a/tests/test_hosted.py
++++ b/tests/test_hosted.py
+@@ -1,6 +1,7 @@
+ from __future__ import annotations
+ 
+ from contextlib import nullcontext
++from datetime import datetime, timedelta, timezone
+ import io
+ import json
+ from pathlib import Path
+@@ -16,12 +17,14 @@
+ 
+ 
+ def envelope() -> dict[str, object]:
++    finished_at = datetime.now(timezone.utc).replace(microsecond=0)
++    started_at = finished_at - timedelta(seconds=1)
+     return {
+         "schemaVersion": 1,
+         "runId": str(uuid4()),
+         "contractFingerprint": "a" * 64,
+-        "startedAt": "2026-07-27T12:00:00Z",
+-        "finishedAt": "2026-07-27T12:00:01Z",
++        "startedAt": started_at.isoformat().replace("+00:00", "Z"),
++        "finishedAt": finished_at.isoformat().replace("+00:00", "Z"),
+         "overall": "passed",
+         "fileFormat": "parquet",
+         "rowCount": 1,

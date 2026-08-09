@@ -11,6 +11,8 @@ package:
 source:
   url: https://pypi.org/packages/source/a/agentsor-file/agentsor_file-${{ version }}.tar.gz
   sha256: cd9d91348d5f3b1240ce9edcb2acfd91c7b75ed931b350a6cf32aad08b47002b
+  patches:
+    - patches/0001-make-hosted-test-timestamps-relative.patch
 
 build:
   number: 0

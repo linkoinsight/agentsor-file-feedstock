@@ -42,6 +42,7 @@ tests:
       pip_check: true
   - files:
       source:
+        - README.md
         - tests/
         - examples/
     requirements:
